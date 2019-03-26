@@ -4,8 +4,8 @@ import { withAuthorization } from '../Session';
 
 const Home = () => (
   <div>
-      <h1>Home</h1>
-      <p>The Home Page is accessible by every signed in user.</p>
+      <h1>主畫面</h1>
+      <p>登入的使用者才能看到這頁</p>
   </div>
 );
 

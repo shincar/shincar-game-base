@@ -42,18 +42,18 @@ class UserList extends Component {
     return (
       <div>
         <h2>Users</h2>
-        {loading && <div>Loading ...</div>}
+        {loading && <div>載入中 ...</div>}
         <ul>
           {users.map(user => (
             <li key={user.uid}>
               <span>
-                <strong>ID:</strong> {user.uid}
+                <strong>使用者識別:</strong> {user.uid}
               </span>
               <span>
-                <strong>E-Mail:</strong> {user.email}
+                <strong>電子郵件信箱:</strong> {user.email}
               </span>
               <span>
-                <strong>Username:</strong> {user.username}
+                <strong>使用者名稱:</strong> {user.username}
               </span>
               <span>
                 <Link
@@ -62,7 +62,7 @@ class UserList extends Component {
                     state: { user },
                   }}
                 >
-                  Details
+                  詳細資料
                 </Link>
               </span>
             </li>

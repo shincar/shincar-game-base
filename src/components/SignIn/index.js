@@ -9,7 +9,7 @@ import * as ROUTES from '../../constants/routes';
 
 const SignInPage  = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1>登入</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
@@ -60,17 +60,17 @@ class SignInFormBase extends Component {
           value={email}
           onChange={this.onChange}
           type="text"
-          placeholder="Email Address"
+          placeholder="電子郵件信箱"
         />
         <input
           name="password"
           value={password}
           onChange={this.onChange}
           type="password"
-          placeholder="Password"
+          placeholder="密碼"
         />
         <button disabled={isInvalid} type="submit">
-          Sign In
+          登入
         </button>
 
         {error && <p>{error.message}</p>}

@@ -44,25 +44,25 @@ class UserItem extends Component {
     return (
       <div>
         <h2>User ({this.props.match.params.id})</h2>
-        {loading && <div>Loading ...</div>}
+        {loading && <div>載入中 ...</div>}
 
         {user && (
           <div>
             <span>
-              <strong>ID:</strong> {user.uid}
+              <strong>使用者識別:</strong> {user.uid}
             </span>
             <span>
-              <strong>E-Mail:</strong> {user.email}
+              <strong>電子郵件信箱:</strong> {user.email}
             </span>
             <span>
-              <strong>Username:</strong> {user.username}
+              <strong>使用者名稱:</strong> {user.username}
             </span>
             <span>
               <button
                 type="button"
                 onClick={this.onSendPasswordResetEmail}
               >
-                Send Password Reset
+                寄出重設密碼郵件
               </button>
             </span>
           </div>

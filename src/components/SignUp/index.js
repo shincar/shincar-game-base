@@ -76,30 +76,30 @@ class SignUpFormBase extends Component {
           value={username}
           onChange={this.onChange}
           type="text"
-          placeholder="Full Name"
+          placeholder="使用者名稱"
         />
         <input
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
-          placeholder="Email Address"
+          placeholder="電子郵件信箱"
         />
         <input
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
-          placeholder="Password"
+          placeholder="密碼"
         />
         <input
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
-          placeholder="Confirm Password"
+          placeholder="確念密碼"
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="送出">
           Sign Up
         </button>
 
@@ -111,7 +111,7 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
   <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+    沒有帳號嗎? <Link to={ROUTES.SIGN_UP}>點這裡註冊</Link>
   </p>
 );
 
