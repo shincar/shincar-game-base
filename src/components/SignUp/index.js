@@ -7,10 +7,8 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div>
-    <div>
-      <h1>SignUp</h1>
-      <SignUpForm />
-    </div>
+    <h1>SignUp</h1>
+    <SignUpForm />
   </div>
 );
 
@@ -26,14 +24,14 @@ class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE }
+    this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = (event) => {
+  onSubmit = event => {
     const { username, email, passwordOne } = this.state;
-
-    this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+    event.preventDefault();
+    
+    this.props.firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
@@ -41,13 +39,11 @@ class SignUpFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
+  };
 
-    event.preventDefault();
-  }
-
-  onChange = (event) => {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
   render() {
     const {
@@ -94,29 +90,26 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">Sign Up</button>
+        <button disabled={isInvalid} type="submit">
+          Sign Up
+        </button>
 
         {error && <p>{error.message}</p>}
       </form>
     );
-  } 
-}
-
-class SignUpLink extends Component {
-  render() {
-    return (
-      <p>
-      Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-      </p>
-    )
   }
 }
 
+const SignUpLink = () => (
+  <p>
+    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  </p>
+);
+
 const SignUpForm = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignUpFormBase);
 
 export default SignUpPage;
-
 export { SignUpForm, SignUpLink };

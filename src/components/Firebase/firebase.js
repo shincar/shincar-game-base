@@ -1,5 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+const dotenv = require('dotenv');
+dotenv.config();
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,21 +19,25 @@ class Firebase {
         this.auth = app.auth();
     }
 
-    doCreateUserWithEmailAndPassword = (email, password) => {
-        this.auth.createUserWithEmailAndPassword(email, password);
-    };
-
-    doSignInWithEmailAndPassword = (email, password) => {
-        this.auth.signInWithEmailAndPassword(email, password);
-    };
-
+    async doCreateUserWithEmailAndPassword(email, password) {
+      await this.auth.createUserWithEmailAndPassword(email, password);
+    }
+    
+    async doSignInWithEmailAndPassword(email, password) {
+      await this.auth.signInWithEmailAndPassword(email, password);
+    }
+    
     doSignOut = () => {
-        this.auth.signOut();
-    };
+      this.auth.signOut();
+    }
 
-    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+    async doPasswordReset(email) {
+      await this.auth.sendPasswordResetEmail(email);
+    }
 
-    doPassowrdUpdate = password => this.auth.currentUser.updatePassword(password);
+    async doPasswordUpdate(password) { 
+      this.auth.currentUser.updatePassword(password);
+    }
 }
   
 export default Firebase;
