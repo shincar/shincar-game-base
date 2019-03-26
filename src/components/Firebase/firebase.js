@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -17,27 +18,31 @@ class Firebase {
         app.initializeApp(config);
 
         this.auth = app.auth();
+        this.db = app.database();
     }
 
-    async doCreateUserWithEmailAndPassword(email, password) {
-      await this.auth.createUserWithEmailAndPassword(email, password);
-    }
+    // *** Auth API ***
     
-    async doSignInWithEmailAndPassword(email, password) {
-      await this.auth.signInWithEmailAndPassword(email, password);
-    }
+    doCreateUserWithEmailAndPassword = (email, password) =>
+      this.auth.createUserWithEmailAndPassword(email, password);
+    
+    doSignInWithEmailAndPassword = (email, password) =>
+      this.auth.signInWithEmailAndPassword(email, password);
     
     doSignOut = () => {
       this.auth.signOut();
     }
 
-    async doPasswordReset(email) {
-      await this.auth.sendPasswordResetEmail(email);
-    }
+    doPasswordReset = (email) => 
+      this.auth.sendPasswordResetEmail(email);
 
-    async doPasswordUpdate(password) { 
+    doPasswordUpdate = (password) =>  
       this.auth.currentUser.updatePassword(password);
-    }
+      
+    // *** User API ***
+    user = uid => this.db.ref(`users/${uid}`);
+
+    users = () => this.db.ref('users');
 }
   
 export default Firebase;
