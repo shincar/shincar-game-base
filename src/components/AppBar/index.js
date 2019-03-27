@@ -28,8 +28,11 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  appbar: {
+  },
   title: {
     display: 'none',
+    
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -114,7 +117,7 @@ class PrimaryAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar className={classes.appbar} position="static">
           <Toolbar>
             <IconButton className={classes.menuButton}
               aria-label="Open drawer"
@@ -125,10 +128,11 @@ class PrimaryAppBar extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+            <div className={classes.grow}>
+            <Typography className={classes.title} variant="h6" align="center" color="inherit" noWrap>
               Adam & Alvin 的遊戲基地
             </Typography>
-            <div className={classes.grow} />
+            </div>
             <div className={classes.sectionDesktop}>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
