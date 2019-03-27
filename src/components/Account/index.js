@@ -28,19 +28,6 @@ const styles = theme => ({
   typography: {
     margin: theme.spacing.unit,
   },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
-    [theme.breakpoints.up('sm')]: {
-      width: '50%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '30%',
-    },
-  },
-  input: {
-    autoFocus: false,
-  },
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
@@ -48,7 +35,7 @@ const styles = theme => ({
 
 class AccountPage extends React.Component {
   render() {
-    const { firebase, classes } = this.props;
+    const { classes } = this.props;
 
     return (
       <AuthUserContext.Consumer>
