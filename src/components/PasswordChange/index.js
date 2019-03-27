@@ -37,9 +37,21 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
+  typography: {
+    margin: theme.spacing.unit,
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '30%',
+    },
+  },
+  input: {
+    autoFocus: false,
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
@@ -109,21 +121,28 @@ class PasswordChangeFormBase extends Component {
           <form className={classes.form} onSubmit={this.onSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="passwordOne">新密碼</InputLabel>
-              <Input id="passwordOne" name="passwordOne" type="password" autoComplete="password" autoFocus 
+              <Input className={classes.input} 
+                     id="passwordOne" 
+                     name="passwordOne" 
+                     type="password" 
+                     autoComplete="password" 
                      value={passwordOne}
                      onChange={this.onChange}
               />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="passwordTwo">確認新密碼</InputLabel>
-              <Input id="passwordTwo" name="passwordTwo" type="password" autoComplete="password" autoFocus 
+              <Input className={classes.input} 
+                     id="passwordTwo" 
+                     name="passwordTwo" 
+                     type="password" 
+                     autoComplete="password"
                      value={passwordTwo}
                      onChange={this.onChange}
               />
             </FormControl>
             <Button 
               type="submit"
-              fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}

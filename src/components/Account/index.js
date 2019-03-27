@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { PasswordChangeFormBase } from '../PasswordChange';
+import { PasswordChangeForm } from '../PasswordChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 const styles = theme => ({
@@ -38,6 +38,9 @@ const styles = theme => ({
       width: '30%',
     },
   },
+  input: {
+    autoFocus: false,
+  },
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
@@ -63,7 +66,7 @@ class AccountPage extends React.Component {
               <Typography className={classes.typography} variant="body1">
                 電子郵件: {authUser.email}
               </Typography>
-              <PasswordChangeFormBase classes={classes} firebase={firebase} />
+              <PasswordChangeForm />
             </Paper>
             </main>
           </div>
