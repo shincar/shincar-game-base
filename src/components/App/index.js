@@ -5,6 +5,8 @@ import { BrowserRouter as Router,
 
 import { AuthUserContext } from '../Session';
 
+import Header from '../Header';
+import Footer from '../Footer';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
@@ -20,6 +22,7 @@ import { withAuthentication } from '../Session';
 const App = () => (
   <Router>
     <div>
+      <Header />
       <Navigation />
       <hr />
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
@@ -29,6 +32,7 @@ const App = () => (
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Footer />
     </div>
   </Router>
 );
