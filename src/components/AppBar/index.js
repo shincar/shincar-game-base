@@ -103,6 +103,7 @@ class PrimaryAppBar extends React.Component {
           ) : (
             <div>
               <MenuItem onClick={() => this.handleMenuCliced(ROUTES.SIGN_IN)}>登入</MenuItem>
+              <MenuItem onClick={() => this.handleMenuCliced(ROUTES.SIGN_UP)}>註冊</MenuItem>
             </div>
           )
         }

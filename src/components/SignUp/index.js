@@ -1,16 +1,52 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import HowToRegOutlined from '@material-ui/icons/HowToRegOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
-const SignUpPage = () => (
-  <div>
-    <h1>註冊</h1>
-    <SignUpForm />
-  </div>
-);
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit,
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3,
+  },
+});
 
 const INITIAL_STATE = {
   username: '',
@@ -20,13 +56,13 @@ const INITIAL_STATE = {
   error: null,
 };
 
-class SignUpFormBase extends Component {
+class SignUpPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { ...INITIAL_STATE };
   }
-
+  
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
     event.preventDefault();
@@ -46,6 +82,9 @@ class SignUpFormBase extends Component {
         this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
+        console.log(error);
+        if(error.code === "auth/email-already-in-use") 
+          error.message = "電子郵件信箱已經註冊過了哦！";
         this.setState({ error });
       });
   };
@@ -53,8 +92,9 @@ class SignUpFormBase extends Component {
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
+  
   render() {
+    const { classes } = this.props;
     const {
       username,
       email,
@@ -62,7 +102,6 @@ class SignUpFormBase extends Component {
       passwordTwo,
       error,
     } = this.state;
-
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -70,55 +109,70 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="使用者名稱"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="電子郵件信箱"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="密碼"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="確念密碼"
-        />
-        <button disabled={isInvalid} type="送出">
-          Sign Up
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <HowToRegOutlined />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            註冊
+          </Typography>
+          <form className={classes.form} onSubmit={this.onSubmit}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="username">使用者名稱</InputLabel>
+              <Input id="username" name="username" autoComplete="username" autoFocus 
+                     value={username}
+                     onChange={this.onChange}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">電子郵件信箱</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus 
+                     value={email}
+                     onChange={this.onChange}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="passwordOne">密碼</InputLabel>
+              <Input name="passwordOne" type="password" id="passwordOne" autoComplete="current-password" 
+                    value={passwordOne}
+                    onChange={this.onChange}
+              />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="passwordTwo">確認密碼</InputLabel>
+              <Input name="passwordTwo" type="password" id="passwordTwo" autoComplete="current-password" 
+                    value={passwordTwo}
+                    onChange={this.onChange}
+              />
+            </FormControl>
+            <Typography>
+            {error && error.message}
+            </Typography>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disabled={isInvalid} 
+            >
+              註冊
+            </Button>
+          </form>
+        </Paper>
+      </main>
     );
   }
 }
 
-const SignUpLink = () => (
-  <p>
-    沒有帳號嗎? <Link to={ROUTES.SIGN_UP}>點這裡註冊</Link>
-  </p>
-);
+SignUpPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-const SignUpForm = compose(
+export default compose(
   withRouter,
-  withFirebase
-)(SignUpFormBase);
-
-export default SignUpPage;
-export { SignUpForm, SignUpLink };
+  withFirebase,
+  withStyles(styles),
+)(SignUpPage);
