@@ -6,7 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-
 import { PasswordChangeForm } from '../PasswordChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 
@@ -42,7 +41,7 @@ const styles = theme => ({
 
 class AccountPage extends React.Component {
   render() {
-    const { firebase, classes } = this.props;
+    const { classes } = this.props;
 
     return (
       <AuthUserContext.Consumer>
