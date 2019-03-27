@@ -1,25 +1,84 @@
 import React from 'react';
+import { compose } from 'recompose';
+import PropTypes from 'prop-types';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-import { PasswordForgetForm } from '../PasswordForget';
-import PasswordChangeForm from '../PasswordChange';
+
+import { PasswordChangeForm } from '../PasswordChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 
-const AccountPage = () => (
-   <AuthUserContext.Consumer>
-    {authUser => (
-      <div>
-        <h1>帳號資訊</h1>
-        <div>
-          使用者名稱： {authUser.username} <br />
-          電子郵件: {authUser.email} <br />
-        </div>
-        <PasswordForgetForm />
-        <PasswordChangeForm />
-      </div>
-    )}
-  </AuthUserContext.Consumer>
-);
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'left',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing.unit,
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3,
+  },
+});
+
+class AccountPage extends React.Component {
+  render() {
+    const { firebase, classes } = this.props;
+
+    return (
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <div>
+            <main className={classes.main}>
+            <CssBaseline />
+            <Paper className={classes.paper}>
+              <Typography component="h3" variant="h3" gutterBottom>
+                帳號資訊
+              </Typography>
+              <Typography variant="body1">
+                使用者名稱： {authUser.username}
+              </Typography>
+              <Typography variant="body1">
+                電子郵件: {authUser.email}
+              </Typography>
+              <PasswordChangeForm />
+            </Paper>
+            </main>
+          </div>
+        )}
+      </AuthUserContext.Consumer>
+    );
+  }
+}
+
+AccountPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(AccountPage);
+export default compose(
+  withAuthorization(condition),
+  withStyles(styles),
+)(AccountPage);

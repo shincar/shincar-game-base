@@ -122,6 +122,7 @@ class PasswordForgetFormBase extends Component {
     );
   }
 }
+
 const PasswordForgetLink = () => (
   <p>
     <Link to={ROUTES.PASSWORD_FORGET}>忘記密碼?</Link>
@@ -132,11 +133,11 @@ PasswordForgetFormBase.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default compose(
+const PasswordForgetForm = compose(
   withFirebase,
   withStyles(styles),
 )(PasswordForgetFormBase);
 
-const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
+export default PasswordForgetForm;
 
 export { PasswordForgetForm, PasswordForgetLink };
