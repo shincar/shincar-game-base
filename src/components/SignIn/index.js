@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -45,6 +46,9 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+  },
+  link: {
+    margin: theme.spacing.unit,
   },
 });
 
@@ -115,6 +119,9 @@ class SignIn extends React.Component {
                     onChange={this.onChange}
               />
             </FormControl>
+            <Typography>
+              <Link className={classes.link} href={ROUTES.PASSWORD_FORGET}>忘記密碼?</Link>
+            </Typography>
             <Typography>
             {error && error.message}
             </Typography>
