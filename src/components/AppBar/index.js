@@ -25,17 +25,13 @@ const styles = theme => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
+    marginLeft: -15,
+    marginRight: 0,
   },
   appbar: {
   },
   title: {
-    display: 'none',
-    
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+    display: 'block',
   },
   sectionDesktop: {
     display: 'flex'
