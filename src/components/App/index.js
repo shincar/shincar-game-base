@@ -7,6 +7,7 @@ import { AuthUserContext } from '../Session';
 
 import Header from '../Header';
 import Footer from '../Footer';
+import ButtonAppBar from '../AppBar';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
@@ -22,9 +23,7 @@ import { withAuthentication } from '../Session';
 const App = () => (
   <Router>
     <div>
-      <Header />
-      <Navigation />
-      <hr />
+      <ButtonAppBar />
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />

@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    <h1>註冊</h1>
     <SignUpForm />
   </div>
 );
