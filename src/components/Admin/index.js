@@ -11,9 +11,6 @@ class AdminBase extends Component {
   render() {
     return (
       <div>
-        <h1>帳號管理</h1>
-        <p>管理者頁面，只有管理員才能進入。</p>
-        
         <Switch>
           <Route exact path={ROUTES.ADMIN_DETAILS} component={UserItem} />
           <Route exact path={ROUTES.ADMIN} component={UserList} />

@@ -23,7 +23,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'left',
@@ -32,6 +32,9 @@ const styles = theme => ({
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
+  },
+  typography: {
+    margin: theme.spacing.unit,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -56,10 +59,10 @@ class AccountPage extends React.Component {
               <Typography component="h3" variant="h3" gutterBottom>
                 帳號資訊
               </Typography>
-              <Typography variant="body1">
+              <Typography className={classes.typography} variant="body1">
                 使用者名稱： {authUser.username}
               </Typography>
-              <Typography variant="body1">
+              <Typography className={classes.typography} variant="body1">
                 電子郵件: {authUser.email}
               </Typography>
               <PasswordChangeForm />
