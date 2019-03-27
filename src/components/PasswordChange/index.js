@@ -106,7 +106,7 @@ class PasswordChangeFormBase extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return (
-          <form onSubmit={this.onSubmit}>
+          <form className={classes.form} onSubmit={this.onSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="passwordOne">新密碼</InputLabel>
               <Input id="passwordOne" name="passwordOne" type="password" autoComplete="password" autoFocus 

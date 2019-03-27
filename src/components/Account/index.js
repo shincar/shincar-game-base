@@ -6,15 +6,13 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import { PasswordChangeForm } from '../PasswordChange';
+import { PasswordChangeFormBase } from '../PasswordChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 const styles = theme => ({
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
   },
   paper: {
     marginTop: theme.spacing.unit,
@@ -33,6 +31,12 @@ const styles = theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+      width: '50%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '30%',
+    },
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
@@ -41,7 +45,7 @@ const styles = theme => ({
 
 class AccountPage extends React.Component {
   render() {
-    const { classes } = this.props;
+    const { firebase, classes } = this.props;
 
     return (
       <AuthUserContext.Consumer>
@@ -59,7 +63,7 @@ class AccountPage extends React.Component {
               <Typography className={classes.typography} variant="body1">
                 電子郵件: {authUser.email}
               </Typography>
-              <PasswordChangeForm />
+              <PasswordChangeFormBase classes={classes} firebase={firebase} />
             </Paper>
             </main>
           </div>

@@ -15,6 +15,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 
 const styles = theme => ({
   main: {
@@ -65,7 +66,10 @@ class SignUpPage extends React.Component {
   
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
+    const roles = [];
+
     event.preventDefault();
+    roles.push(ROLES.BASIC);
     
     this.props.firebase.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -75,6 +79,7 @@ class SignUpPage extends React.Component {
           .set({
             username,
             email,
+            roles,
           });
       })
       .then(authUser => {
