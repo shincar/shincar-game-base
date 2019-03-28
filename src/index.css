@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,4 +13,20 @@ body {
 
 code {
   font-family: "Roboto Mono", Consolas, monospace;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.content { 
+  flex: 1 0 auto; 
+} 
+
+.footer {   
+  flex-shrink: 0;
 }
