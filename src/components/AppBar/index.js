@@ -28,10 +28,14 @@ const styles = theme => ({
     marginLeft: -15,
     marginRight: 0,
   },
+  menuItem: {
+    fontFamily: ["Noto Sans TC", "sans-serif"].join(','),
+  },
   appbar: {
   },
   title: {
     display: 'block',
+    fontFamily: ["Noto Sans TC", "sans-serif"].join(','),
   },
   sectionDesktop: {
     display: 'flex'
@@ -78,8 +82,8 @@ class PrimaryAppBar extends React.Component {
         open={isMainMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={() => this.handleMenuCliced(ROUTES.LANDING)}>首頁</MenuItem>
-        <MenuItem onClick={() => this.handleMenuCliced(ROUTES.HOME)}>主畫面</MenuItem>
+        <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.LANDING)}>首頁</MenuItem>
+        <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.HOME)}>主畫面</MenuItem>
       </Menu>
     );
     
@@ -95,15 +99,15 @@ class PrimaryAppBar extends React.Component {
         {authUser =>
           authUser ? (
             <div>
-              <MenuItem onClick={() => this.handleMenuCliced(ROUTES.ACCOUNT)}>帳號資訊</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.ACCOUNT)}>帳號資訊</MenuItem>
               {authUser.roles.includes(ROLES.ADMIN) && (
-                <MenuItem onClick={() => this.handleMenuCliced(ROUTES.ADMIN)}>帳號管理</MenuItem>
+                <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.ADMIN)}>帳號管理</MenuItem>
               )}
             </div>
           ) : (
             <div>
-              <MenuItem onClick={() => this.handleMenuCliced(ROUTES.SIGN_IN)}>登入</MenuItem>
-              <MenuItem onClick={() => this.handleMenuCliced(ROUTES.SIGN_UP)}>註冊</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.SIGN_IN)}>登入</MenuItem>
+              <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.SIGN_UP)}>註冊</MenuItem>
             </div>
           )
         }

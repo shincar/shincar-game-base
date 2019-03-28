@@ -28,16 +28,14 @@ class Landing extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <main className={classes.main}>
-          <CssBaseline />
-          <Paper className={classes.paper}>
-          <Typography component="h3" variant="h3" gutterBottom>
-            遊戲大廳
-          </Typography>
-          </Paper>
-        </main>
-      </div>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+        <Typography className={classes.typography} component="h3" variant="h3" gutterBottom>
+          遊戲大廳
+        </Typography>
+        </Paper>
+      </main>
     );
   }
 }
