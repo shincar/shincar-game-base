@@ -4,24 +4,33 @@ import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Chat from '@material-ui/icons/Chat';
+import Fab from '@material-ui/core/Fab';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { withAuthorization } from '../Session';
 
 const styles = theme => ({
   main: {
-    width: 'auto',
+    margin: '0px',
+    padding: '0px',
+    width: '100%',
+    height: '100%',
     display: 'block', // Fix IE 11 issue.
   },
   paper: {
-    marginTop: theme.spacing.unit,
     display: 'flex',
+    height: '100%',
     flexDirection: 'column',
     alignItems: 'left',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
   },
   typography: {
     margin: theme.spacing.unit,
+  },
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing.unit* 5,
+    right: theme.spacing.unit,
   },
 });
 
@@ -30,16 +39,17 @@ class Home extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
-        <main className={classes.main}>
-          <CssBaseline />
-          <Paper className={classes.paper}>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
           <Typography component="h3" variant="h3" gutterBottom>
             主畫面
           </Typography>
-          </Paper>
-        </main>
-      </div>
+          <Fab className={classes.fab} color='primary'>
+              <Chat />
+          </Fab>
+        </Paper>
+      </main>
     );
   }
 }
