@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './components/App';
 import Firebase, { FirebaseContext } from './components/Firebase';
 
-const theme = createMuiTheme({
+const style = createMuiTheme({
   button: {
     fontFamily: ["Noto Sans TC", "sans-serif"].join(','),
   },
@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={style}>
       <App />
     </MuiThemeProvider>
     </FirebaseContext.Provider>,

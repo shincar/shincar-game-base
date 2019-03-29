@@ -18,7 +18,9 @@ import { withAuthentication } from '../Session';
 
 const App = () => (
   <Router>
-      <ButtonAppBar />
+      <div className="appbar">
+        <ButtonAppBar />
+      </div>
       <div className="content">
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
         <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -28,7 +30,9 @@ const App = () => (
         <Route path={ROUTES.ACCOUNT} component={AccountPage} />
         <Route path={ROUTES.ADMIN} component={AdminPage} />
       </div>
-      <Footer />
+      <div className="footer">
+        <Footer />
+      </div>
   </Router>
 );
 

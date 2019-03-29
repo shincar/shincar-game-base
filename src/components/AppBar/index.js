@@ -28,14 +28,10 @@ const styles = theme => ({
     marginLeft: -15,
     marginRight: 0,
   },
-  menuItem: {
-    fontFamily: ["Noto Sans TC", "sans-serif"].join(','),
-  },
   appbar: {
   },
   title: {
     display: 'block',
-    fontFamily: ["Noto Sans TC", "sans-serif"].join(','),
   },
   sectionDesktop: {
     display: 'flex'
@@ -103,6 +99,7 @@ class PrimaryAppBar extends React.Component {
               {authUser.roles.includes(ROLES.ADMIN) && (
                 <MenuItem className={classes.menuItem} onClick={() => this.handleMenuCliced(ROUTES.ADMIN)}>帳號管理</MenuItem>
               )}
+              <MenuItem className={classes.menuItem} onClick={() => this.handleMenuClose()}><SignOutButton /></MenuItem>
             </div>
           ) : (
             <div>
@@ -117,8 +114,8 @@ class PrimaryAppBar extends React.Component {
     );
 
     return (
-      <div className={classes.root}>
-        <AppBar className={classes.appbar} position="static">
+      <div>
+        <AppBar className={classes.root} position="static">
           <Toolbar>
             <IconButton className={classes.menuButton}
               aria-label="Open drawer"
@@ -143,16 +140,6 @@ class PrimaryAppBar extends React.Component {
               >
                 <AccountCircle />
               </IconButton>
-              <AuthUserContext.Consumer>
-                {
-                  authUser => authUser ? 
-                  (
-                    <SignOutButton />
-                  ) : (
-                    <div />
-                  )
-                }
-              </AuthUserContext.Consumer>
             </div>
           </Toolbar>
         </AppBar>

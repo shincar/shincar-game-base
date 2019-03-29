@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Chat from '@material-ui/icons/Chat';
-import Fab from '@material-ui/core/Fab';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import { withAuthorization } from '../Session';
@@ -24,14 +22,6 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'left',
   },
-  typography: {
-    margin: theme.spacing.unit,
-  },
-  fab: {
-    position: 'fixed',
-    bottom: theme.spacing.unit* 5,
-    right: theme.spacing.unit,
-  },
 });
 
 class Home extends React.Component {
@@ -45,9 +35,6 @@ class Home extends React.Component {
           <Typography component="h3" variant="h3" gutterBottom>
             主畫面
           </Typography>
-          <Fab className={classes.fab} color='primary'>
-              <Chat />
-          </Fab>
         </Paper>
       </main>
     );

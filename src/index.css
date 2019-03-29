@@ -16,17 +16,32 @@ code {
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
+  display: grid;
   height: 100%;
+  grid-template-columns: repeat(10);
+  grid-template-rows: 65px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 70px;
+  grid-template-areas: 
+    "a a a a a a a a a a"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "c c c c c c c c c c"
+    "f f f f f f f f f f";
+}
+
+.appbar {
+  grid-area: a;
 }
 
 .content { 
-  flex: 1 0 auto; 
+  grid-area: c;
+  overflow-y: auto;
 } 
 
 .footer {   
-  flex-shrink: 0;
+  grid-area: f;
 }
